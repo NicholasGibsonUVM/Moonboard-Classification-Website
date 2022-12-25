@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ImageMarker from "react-image-marker";
 import { useDispatch } from "react-redux";
 import { flipHold } from "./boardSlice";

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { store } from './app/store';
 import 'bootstrap/dist/css/bootstrap.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 import './index.css';
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
@@ -25,7 +24,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+getAnalytics(app);
 
 const container = document.getElementById('root');
 const root = createRoot(container);
