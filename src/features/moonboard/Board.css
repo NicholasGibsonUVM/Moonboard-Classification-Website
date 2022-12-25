@@ -1,0 +1,14 @@
+.fullwidth {
+    width: fit-content;
+    margin: auto;
+}
+
+.board {
+    padding: 1.5rem;
+    position: relative;
+}
+
+.boardgrid {
+    border-collapse: collapse;
+    margin: auto;
+}

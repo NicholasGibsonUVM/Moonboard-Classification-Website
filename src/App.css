@@ -1,3 +1,7 @@
+:root {
+  --moonboard-color: #EEDF52;
+}
+
 .App {
   text-align: center;
 }
