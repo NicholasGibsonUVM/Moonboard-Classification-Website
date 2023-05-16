@@ -6,7 +6,10 @@ export const BoardSubmit = () => {
   return (
     <button
       disabled={loading}
-      onClick={() => console.log("Guessing Grade...")}
+      onClick={() => {
+        setLoading(true);
+        console.log("Guessing Grade...");
+      }}
     >
       Guess Grade
     </button>
