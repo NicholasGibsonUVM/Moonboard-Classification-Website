@@ -1,44 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { Square } from "./Square";
 import { selectBoard } from "./boardSlice";
-import "./Board.css";
+import { BoardSquare } from "./BoardSquare";
 
-const rows = [...Array(19).keys()];
-const cols = [...Array(12).keys()];
-
-export function Board() {
+export const Board = () => {
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
   const board = useSelector(selectBoard);
 
-  return (
-    <div className="board">
-      <table className="boardgrid">
-        <tbody>
-          {rows.map((row_number, i) => (
-            <tr key={i} className={"row-" + i}>
-              {cols.map((col_number, j) => (
-                <Square
-                  image={
-                    "images/moonboard_segments/row-" +
-                    (row_number + 1) +
-                    "-column-" +
-                    (col_number + 1) +
-                    ".jpg"
-                  }
-                  row={row_number}
-                  col={col_number}
-                  active={
-                    row_number > 0 && col_number > 0
-                      ? board[row_number - 1][col_number - 1] === 1
-                      : 0
-                  }
-                  key={j}
-                />
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
+  useEffect(() => {
+    function handleResize() {
+      setDimensions({
+        width: window.innerWidth * .28,
+        height: window.innerHeight,
+      });
+    }
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const gridStyle = {
+    display: "grid",
+    gridTemplateColumns: `repeat(12, 1fr)`,
+    gridTemplateRows: `repeat(19, 1fr)`,
+    width: `${dimensions.width}px`,
+    height: `${(dimensions.width * 19) / 12}px`,
+    margin: "auto"
+  };
+
+  const squareStyle = {
+    width: '100%',
+    height: '100%',
+  };
+
+  const squares = board.map((hold, index) => (
+    <div key={index} style={squareStyle}>
+      <BoardSquare image={hold.imageName} row={hold.row} col={hold.col} active={hold.active}/>
     </div>
-  );
-}
+  ));
+
+  return <div style={gridStyle}>{squares}</div>;
+};

@@ -1,21 +1,22 @@
 import React from "react";
 import "./App.css";
 import { Board } from "./features/moonboard/Board";
+import { BoardSubmit } from "./features/moonboard/BoardSubmit";
 
 function App() {
   return (
-    <div className="col gy-5">
-      <nav className="navbar navbar-light bg-light row">
-        <div className="container gx-5">
-          <h1>Moonboard Grade Guesser</h1>
-        </div>
-      </nav>
+    <div className="container">
       <div className="row">
-        <Board />
+        <div className="col gy-2">
+          <div className="grid">
+            <Board />
+          </div>
+        </div>
+        <div className="col gy-2">
+          <h1>Moonboard Grade Guesser</h1>
+          <BoardSubmit/>
+        </div>
       </div>
-      <footer className="bg-light text-center text-lg-start row">
-        <div className="text-center p-3">Created by Nicholas Gibson</div>
-      </footer>
     </div>
   );
 }
