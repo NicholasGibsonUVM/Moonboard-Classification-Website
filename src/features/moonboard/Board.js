@@ -27,13 +27,17 @@ export const Board = () => {
     gridTemplateRows: `repeat(19, 1fr)`,
     width: `${dimensions.width}px`,
     height: `${(dimensions.width * 19) / 12}px`,
+    maxHeight: "100vh",
     margin: "auto"
   };
+  
 
   const squareStyle = {
     width: '100%',
     height: '100%',
+    objectFit: 'cover',
   };
+  
 
   const squares = board.map((hold, index) => (
     <div key={index} style={squareStyle}>
