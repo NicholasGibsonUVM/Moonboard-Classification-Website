@@ -16,7 +16,6 @@ const initialState = {
   }),
 };
 
-
 export const boardSlice = createSlice({
   name: "boardSlice",
   initialState: initialState,
@@ -38,5 +37,32 @@ export const boardSlice = createSlice({
 export const { flipHold } = boardSlice.actions;
 
 export const selectBoard = (state) => state.board.board;
+
+export const selectBoardForAPI = (state) => {
+  const board = state.board.board;
+
+  // Assuming you know the number of rows and columns
+  const numRows = 18;
+
+  let rows = Array(numRows)
+    .fill()
+    .map(() => []);
+
+  // Create the 2D array representation
+  for (let i = 0; i < board.length; i++) {
+    if (board[i].col > 1 && board[i].row > 1) {
+      const value = board[i].active ? 1 : 0;
+      rows[board[i].row - 2].push(value);
+    }
+  }
+
+  // Reverse the rows
+  rows = rows.reverse();
+
+  // Flatten the rows back into a 1D array
+  let boardForAPI = [].concat(...rows);
+
+  return boardForAPI;
+};
 
 export default boardSlice.reducer;
