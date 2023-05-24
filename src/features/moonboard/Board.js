@@ -10,7 +10,7 @@ export const Board = () => {
   useEffect(() => {
     function handleResize() {
       setDimensions({
-        width: window.innerWidth * .28,
+        width: window.innerWidth * 0.28,
         height: window.innerHeight,
       });
     }
@@ -28,21 +28,16 @@ export const Board = () => {
     width: `${dimensions.width}px`,
     height: `${(dimensions.width * 19) / 12}px`,
     maxHeight: "100vh",
-    margin: "auto"
+    margin: "auto",
   };
-  
-
-  const squareStyle = {
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  };
-  
 
   const squares = board.map((hold, index) => (
-    <div key={index} style={squareStyle}>
-      <BoardSquare image={hold.imageName} row={hold.row} col={hold.col} active={hold.active}/>
-    </div>
+    <BoardSquare
+      image={hold.imageName}
+      row={hold.row}
+      col={hold.col}
+      active={hold.active}
+    />
   ));
 
   return <div style={gridStyle}>{squares}</div>;
